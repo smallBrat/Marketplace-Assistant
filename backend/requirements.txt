@@ -10,3 +10,5 @@ pydantic[email]==2.9.2       # validation (email, password, etc.)
 python-jose[cryptography]
 google-cloud-firestore
 firebase_admin
+vertexai
+google-cloud-aiplatform
