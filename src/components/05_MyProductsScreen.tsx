@@ -6,6 +6,17 @@ import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Plus, Home, Package, BarChart3, Settings, Users, ShoppingBag } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+// TypeScript fix for import.meta.env
+declare global {
+  interface ImportMeta {
+    env: {
+      VITE_API_URL: string;
+      [key: string]: any;
+    };
+  }
+}
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface MyProductsScreenProps {
   onAddProduct: () => void;
@@ -42,7 +53,7 @@ export function MyProductsScreen({ onAddProduct, onNavigate }: MyProductsScreenP
       }
     }
     if (email) {
-      fetch(`http://localhost:8000/api/v1/?email=${email}`)
+      fetch(`${API_URL}/api/v1/products?email=${email}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);

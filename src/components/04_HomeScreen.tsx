@@ -23,6 +23,8 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface HomeScreenProps {
   onAddProduct: () => void;
@@ -50,7 +52,7 @@ export function HomeScreen({ onAddProduct, onNavigate, refreshKey }: HomeScreenP
   const [currentTipIndex, setCurrentTipIndex] = useState(0);
   const [artisanName, setArtisanName] = useState<string>("");
   const [artisanInitials, setArtisanInitials] = useState<string>("");
-  const [products, setProducts] = useState<Array<{id: string, title: string, image: string, description: string, backstory?: string}>>([]);
+    const [products, setProducts] = useState<Array<{id: string, title: string, image: string, description: string, backstory?: string}>>([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -69,7 +71,7 @@ export function HomeScreen({ onAddProduct, onNavigate, refreshKey }: HomeScreenP
       }
     }
     if (email) {
-      fetch(`http://localhost:8000/api/v1/?email=${email}`)
+        fetch(`${API_URL}/api/v1/products?email=${email}`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);

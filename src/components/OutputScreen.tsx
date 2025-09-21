@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 import { ScrollArea } from './ui/scroll-area';
 import { Badge } from './ui/badge';
 import { 
@@ -30,7 +32,7 @@ export function OutputScreen({ onNext, productId }: OutputScreenProps) {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/v1/${productId}`);
+  const res = await fetch(`${API_URL}/api/v1/${productId}`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {

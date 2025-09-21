@@ -1,3 +1,5 @@
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 import { useState, useRef, useEffect } from "react";
 import {
   Card,
@@ -262,7 +264,7 @@ export function InputScreen({ onNext }: InputScreenProps) {
         formData.append("image", fileInputRef.current.files[0]);
       }
 
-      const res = await fetch("http://localhost:8000/api/v1/add", {
+  const res = await fetch(`${API_URL}/api/v1/add`, {
         method: "POST",
         body: formData,
       });

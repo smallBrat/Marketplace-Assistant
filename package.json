@@ -55,6 +55,6 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npx vite build"
+    "build": "vite build"
   }
 }

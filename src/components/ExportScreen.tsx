@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 import { Badge } from './ui/badge';
 import { 
   ShoppingBag,
@@ -74,7 +76,7 @@ export function ExportScreen({ onComplete, productId, newTitle, newDescription, 
     setIsExporting(true);
     try {
       // Send update request to backend
-      const response = await fetch(`http://localhost:8000/api/v1/${productId}/update`, {
+  const response = await fetch(`${API_URL}/api/v1/${productId}/update`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

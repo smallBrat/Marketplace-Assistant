@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 import { Textarea } from './ui/textarea';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -36,7 +38,7 @@ export function ReviewScreen({ onNext, product }: ReviewScreenProps) {
   const handleSave = async () => {
   setIsEditing(false);
   // Example: persist changes to backend
-  await fetch("/api/saveProduct", {
+  await fetch(`${API_URL}/api/saveProduct`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ productTitle, productDescription, brandStory }),
@@ -49,7 +51,7 @@ export function ReviewScreen({ onNext, product }: ReviewScreenProps) {
     try {
       // Call a backend endpoint to regenerate using the productId
       // We'll assume product.id is available (from Firestore)
-      const res = await fetch(`http://localhost:8000/api/v1/${product.id}/regenerate`, {
+  const res = await fetch(`${API_URL}/api/v1/${product.id}/regenerate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({})
@@ -69,7 +71,7 @@ export function ReviewScreen({ onNext, product }: ReviewScreenProps) {
   const handleAccept = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/${product.id}/update`, {
+  const res = await fetch(`${API_URL}/api/v1/${product.id}/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

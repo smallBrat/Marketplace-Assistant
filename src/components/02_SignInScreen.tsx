@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
+// Use VITE_API_URL for backend base URL
+const API_URL = import.meta.env.VITE_API_URL;
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Checkbox } from './ui/checkbox';
@@ -63,7 +65,7 @@ export function SignInScreen({ onNext, onSignUp }: SignInScreenProps) {
   if (validateForm()) {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+  const response = await fetch(`${API_URL}/api/v1/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
