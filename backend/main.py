@@ -15,6 +15,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",  # if you sometimes use Vite
         "http://localhost:3000",  # React dev server
+        "https://marketplaceassistant.netlify.app/"
     ],
     allow_credentials=True,
     allow_methods=["*"],
