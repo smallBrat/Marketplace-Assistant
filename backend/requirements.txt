@@ -12,3 +12,5 @@ google-cloud-firestore
 firebase_admin
 vertexai
 google-cloud-aiplatform
+requests
+Pillow
